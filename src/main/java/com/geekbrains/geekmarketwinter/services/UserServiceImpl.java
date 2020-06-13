@@ -24,12 +24,13 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder passwordEncoder;
-//    private UserRepositorySlqO2 userProvider;
 
-//    @Autowired
-//    public void setUserProvider(UserRepositorySlqO2 userProvider) {
-//        this.userProvider = userProvider;
-//    }
+    private UserRepositorySlqO2 userRepositorySlqO2;
+
+    @Autowired
+    public void setUserRepositorySlqO2(UserRepositorySlqO2 userRepositorySlqO2) {
+        this.userRepositorySlqO2 = userRepositorySlqO2;
+    }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
@@ -49,8 +50,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User findByUserName(String username) {
-        //return userProvider.getUser(username);
-        return userRepository.findOneByUserName(username);
+        return userRepositorySlqO2.getUser(username);
+//        return userRepository.findOneByUserName(username);
+    }
+
+    @Override
+    public User findByUserId(Long id) {
+        return userRepositorySlqO2.getUserById(id);
+//        return userRepository.findById(id).orElse(null);
     }
 
     @Override

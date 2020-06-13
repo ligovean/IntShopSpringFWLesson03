@@ -31,6 +31,9 @@ public class OrderService {
 
     @Transactional
     public Order makeOrder(ShoppingCart cart, User user) {
+
+        OrderStatus os = orderStatusService.getStatusById(1L);
+
         Order order = new Order();
         order.setId(0L);
         order.setUser(user);

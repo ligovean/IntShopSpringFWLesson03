@@ -19,7 +19,9 @@ import javax.validation.Valid;
 @RequestMapping("/products")
 public class ProductController {
     private ProductService productService;
+
     private CategoryService categoryService;
+
     private ImageSaverService imageSaverService;
 
     @Autowired
